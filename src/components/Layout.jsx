@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Hero from "./Hero";
 import Manifesto from "./Manifesto";
 import SamuraiSlash from "./SamuraiSlash";
@@ -13,68 +13,23 @@ import Contact from "./Contact";
 export default function Layout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [audioEnabled, setAudioEnabled] = useState(false);
+  const audioRef = useRef(null);
 
-  useEffect(() => {
-    const btnMenu = document.getElementById("btn-menu");
-    const drawerScrim = document.getElementById("drawer-scrim");
-    const drawer = document.getElementById("site-drawer");
-    const drawerClose = document.getElementById("drawer-close");
-    const audioToggle = document.getElementById("audio-toggle");
-    const themeAudio = document.getElementById("theme-audio");
-
-    const openDrawer = () => {
-      setDrawerOpen(true);
-      if (drawer) {
-        drawer.setAttribute("aria-hidden", "false");
-        drawer.dataset.open = "true";
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (!audioEnabled) {
+        audioRef.current.play().catch(() => {
+          console.warn("Autoplay blocked by browser. User interaction required.");
+        });
+      } else {
+        audioRef.current.pause();
       }
-      if (btnMenu) btnMenu.setAttribute("aria-expanded", "true");
-      if (drawerScrim) drawerScrim.removeAttribute("hidden");
-    };
-
-    const closeDrawer = () => {
-      setDrawerOpen(false);
-      if (drawer) {
-        drawer.setAttribute("aria-hidden", "true");
-        drawer.removeAttribute("data-open");
-      }
-      if (btnMenu) btnMenu.setAttribute("aria-expanded", "false");
-      if (drawerScrim) drawerScrim.setAttribute("hidden", "");
-    };
-
-    // Menu button handler
-    if (btnMenu) {
-      btnMenu.addEventListener("click", openDrawer);
-    }
-
-    if (drawerClose) drawerClose.addEventListener("click", closeDrawer);
-    if (drawerScrim) drawerScrim.addEventListener("click", closeDrawer);
-
-    // Audio toggle handler
-    const toggleAudio = () => {
       setAudioEnabled(!audioEnabled);
-      if (themeAudio) {
-        if (!audioEnabled) {
-          themeAudio.play().catch(() => {
-            // Autoplay might be blocked by browser
-          });
-          audioToggle.setAttribute("aria-pressed", "true");
-        } else {
-          themeAudio.pause();
-          audioToggle.setAttribute("aria-pressed", "false");
-        }
-      }
-    };
+    }
+  };
 
-    if (audioToggle) audioToggle.addEventListener("click", toggleAudio);
-
-    return () => {
-      if (btnMenu) btnMenu.removeEventListener("click", openDrawer);
-      if (drawerClose) drawerClose.removeEventListener("click", closeDrawer);
-      if (drawerScrim) drawerScrim.removeEventListener("click", closeDrawer);
-      if (audioToggle) audioToggle.removeEventListener("click", toggleAudio);
-    };
-  }, [audioEnabled]);
+  const openDrawer = () => setDrawerOpen(true);
+  const closeDrawer = () => setDrawerOpen(false);
 
   return (
     <>
@@ -118,8 +73,15 @@ export default function Layout() {
       </div>
 
       {/* AUDIO TOGGLE */}
-      <audio id="theme-audio" src="/assets/theme-shamisen.mp3" loop preload="auto" aria-hidden="true"></audio>
-      <button id="audio-toggle" className="audio-toggle" type="button" aria-label="Toggle audio" aria-pressed="false">
+      <audio 
+        ref={audioRef}
+        id="theme-audio" 
+        src="/assets/theme-shamisen.mp3" 
+        loop 
+        preload="auto" 
+        aria-hidden="true"
+      ></audio>
+      <button onClick={toggleAudio} className="audio-toggle" type="button" aria-label="Toggle audio" aria-pressed={audioEnabled}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path className="ico-on" d="M4 10v4h4l5 4V6L8 10H4z M16 8a5 5 0 0 1 0 8 M19 5a9 9 0 0 1 0 14" />
           <path className="ico-off" d="M4 10v4h4l5 4V6L8 10H4z M17 9l5 6 M22 9l-5 6" />
@@ -128,7 +90,7 @@ export default function Layout() {
 
       <main role="main">
         {/* HERO SECTION */}
-        <Hero />
+        <Hero onMenuClick={openDrawer} />
 
         {/* MANIFESTO / CHAPTER 01 */}
         <Manifesto />
@@ -178,14 +140,24 @@ export default function Layout() {
       </main>
 
       {/* DRAWER NAVIGATION */}
-      <div className="drawer-scrim" id="drawer-scrim" hidden></div>
-      <aside className="drawer" id="site-drawer" role="dialog" aria-modal="true"
-             aria-labelledby="drawer-title" aria-hidden="true">
+      <div 
+        className="drawer-scrim" 
+        onClick={closeDrawer} 
+        style={{ display: drawerOpen ? 'block' : 'none', opacity: drawerOpen ? 1 : 0 }}
+      ></div>
+      <aside 
+        className="drawer" 
+        style={{ left: drawerOpen ? '0' : '-100%' }}
+        role="dialog" 
+        aria-modal="true"
+        aria-labelledby="drawer-title" 
+        aria-hidden={!drawerOpen}
+      >
           <div className="drawer-content" id="drawer-content">
           <div className="drawer-strips" aria-hidden="true">
             <i></i><i></i><i></i><i></i><i></i>
           </div>
-          <button className="drawer-close" id="drawer-close" type="button" aria-label="Close menu">
+          <button onClick={closeDrawer} className="drawer-close" type="button" aria-label="Close menu">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
               <path d="M6 6 L18 18" />
               <path d="M18 6 L6 18" />
