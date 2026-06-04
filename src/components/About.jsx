@@ -35,8 +35,8 @@ export default function About() {
       <div className="about-grid">
         <div className="about-copy">
           <p className="lede">
-            Full Stack Developer. Based in <em>cairo — egypt</em>. Survived 4 years of school,
-            mastered 3 years of full-stack engineering. Still debugging my life.
+            Full Stack Developer. Based in <em>Vashi - MUmbai</em>. Survived 3 years of school,
+            mastered 2 years of full-stack engineering. Still debugging my life.
           </p>
           <p>
             I build systems the way a sword gets forged — slow, obsessive, a little dramatic.
@@ -46,9 +46,9 @@ export default function About() {
 
         <aside className="about-chips" aria-label="Quick facts">
           <dl>
-            <div><dt>LOCATION</dt><dd>Cairo · Egypt <span className="jp">エジプト</span></dd></div>
+            <div><dt>LOCATION</dt><dd>Vashi - Mumbai <span className="jp">ムンバイ</span></dd></div>
             <div><dt>ROLE</dt><dd>Full Stack Engineer</dd></div>
-            <div><dt>YEARS</dt><dd>3+ in the craft</dd></div>
+            <div><dt>YEARS</dt><dd>2+ in the craft</dd></div>
             <div><dt>STATUS</dt><dd><span className="dot"></span> Available for work · 2026</dd></div>
           </dl>
         </aside>
