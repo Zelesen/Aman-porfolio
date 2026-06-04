@@ -3699,7 +3699,7 @@ html:not(.js-enabled) [data-scroll-reveal] .word {
     padding: 72px 22px 34px;
   }
   .drawer-nav .nav-label {
-    font-size: clamp(40px, 13vw, 88px);
+    font-size: clamp(32px, 7vw, 52px);
   }
   .drawer-meta {
     flex-direction: column;
