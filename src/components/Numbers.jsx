@@ -12,7 +12,7 @@ export default function Numbers() {
       <ul className="stat-grid">
         <li className="stat">
           <span className="stat-value" data-count="2">2</span>
-          <span className="stat-label">International Awards</span>
+          <span className="stat-label">Rotational Courses</span>
           <span className="stat-note">Still waiting for my Oscar.</span>
         </li>
         <li className="stat">
