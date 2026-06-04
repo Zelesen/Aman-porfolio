@@ -30,7 +30,7 @@ export default function About() {
         <span className="ch-meta">M.26 · 生きてる</span>
       </div>
 
-      <h2 id="about-title" className="ch-hero-line fit-line" data-text-effect="char-variation-5">I&nbsp;AM&nbsp;STILL&nbsp;ALIVE.</h2>
+      <h2 id="about-title" className="ch-hero-line fit-line" data-text-effect="char-variation-5">I AM STILL ALIVE.</h2>
 
       <div className="about-grid">
         <div className="about-copy">
