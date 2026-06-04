@@ -118,7 +118,7 @@ export default function Layout() {
       </div>
 
       {/* AUDIO TOGGLE */}
-      <audio id="theme-audio" src="/theme-shamisen.mp3" loop preload="auto" aria-hidden="true"></audio>
+      <audio id="theme-audio" src="/assets/theme-shamisen.mp3" loop preload="auto" aria-hidden="true"></audio>
       <button id="audio-toggle" className="audio-toggle" type="button" aria-label="Toggle audio" aria-pressed="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path className="ico-on" d="M4 10v4h4l5 4V6L8 10H4z M16 8a5 5 0 0 1 0 8 M19 5a9 9 0 0 1 0 14" />
