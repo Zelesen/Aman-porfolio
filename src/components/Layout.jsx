@@ -79,8 +79,8 @@ export default function Layout() {
   return (
     <>
       {/* PRELOADER */}
-      <div id="preloader" className="preloader" role="status" aria-live="polite"
-           aria-label="Loading portfolio — move the cursor while assets assemble">
+      <div id="preloader" className="preloader" role="progressbar" aria-busy="true"
+           aria-label="Loading portfolio — assemble in progress">
         <canvas className="preloader-canvas" aria-hidden="true"></canvas>
         <div className="p-halo" aria-hidden="true"></div>
 

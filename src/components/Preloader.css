@@ -1,0 +1,93 @@
+/* Responsive layout for the Portfolio Preloader */
+
+/* Desktop & Large Screens base padding */
+.preloader-ui {
+  padding: 5rem;
+  box-sizing: border-box;
+  transition: padding 0.4s ease;
+}
+
+@media (max-width: 1200px) {
+  .preloader-ui {
+    padding: 3rem;
+  }
+}
+
+/* Tablets and Smaller Laptops */
+@media (max-width: 768px) {
+  .preloader-ui {
+    padding: 2.5rem;
+  }
+
+  .preloader-pct .num {
+    font-size: 15vw; /* Scale percentage based on screen width */
+  }
+
+  /* Reduce scaling of corner elements to prevent crowding */
+  .p-tl, .p-tr, .p-bl, .p-br {
+    transform: scale(0.85);
+  }
+
+  /* Hide secondary text in the assembly stack if it gets too tight */
+  .p-bl .stack span:last-child {
+    display: none;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  .preloader-ui {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+  }
+
+  /* Reset absolute positions to stack elements vertically or align specifically for mobile */
+  .p-tl, .p-tr, .p-bl, .p-br {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100%;
+  }
+
+  /* Header Section */
+  .p-tr {
+    text-align: right;
+    margin-top: 0.5rem;
+  }
+
+  /* Middle/Loading Section */
+  .p-bl {
+    margin: auto 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+  }
+
+  .preloader-pct .num {
+    font-size: 4rem;
+  }
+
+  /* Footer Section */
+  .p-br {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .preloader-bar {
+    width: 100% !important;
+    height: 2px !important;
+    margin: 1rem 0;
+  }
+}
