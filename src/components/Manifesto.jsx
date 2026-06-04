@@ -1,7 +1,7 @@
 export default function Manifesto() {
   return (
     <section className="chapter ch-manifesto" id="ch-manifesto" data-nr="01" aria-labelledby="manifesto-title">
-      <img className="ornament-enso" src="/ornament-enso.svg" alt="" width="400" height="400" loading="lazy" decoding="async" aria-hidden="true" />
+      {/* <img className="ornament-enso" src="/ornament-enso.svg" alt="" width="400" height="400" loading="lazy" decoding="async" aria-hidden="true" /> */}
       <div className="ch-head">
         <span className="ch-kicker"><span className="jp">一</span> · MANIFESTO</span>
         <span className="ch-meta">SO… WHY WILL YOU HIRE ME?</span>
