@@ -479,7 +479,7 @@ section {
   }
   
   .ch-hero-line {
-    font-size: clamp(1.75rem, 10vw, 2.2rem);
+    font-size: clamp(1.75rem, 10vw, 2.1rem) !important;
     max-width: 100%;
   }
 }
